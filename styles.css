@@ -1,0 +1,95 @@
+/* Cores mais suaves */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eae7dc; /* Bege suave */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('fundo-montanhas.png'); /* Fundo montanhoso */
+    background-size: cover;
+    background-blend-mode: soft-light; /* Suaviza o fundo */
+}
+
+h1 {
+    color: #6a7f8a; /* Azul pastel mais suave */
+    font-size: 3rem;
+}
+
+p.lead {
+    color: #5a7052; /* Verde floresta escuro */
+}
+
+#contador {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+/* Galeria de fotos */
+.foto-container {
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.foto {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fade {
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Estilização dos colantes */
+.colante {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.8; /* Transparência leve */
+}
+
+.colante-rapunzel {
+    width: 100px;
+    top: 20px;
+    left: 20px;
+}
+
+.colante-crepusculo {
+    width: 150px;
+    bottom: 50px;
+    right: 20px;
+}
+
+.colante-irmao-urso {
+    width: 120px;
+    top: 100px;
+    right: 30px;
+}
+
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #contador {
+        font-size: 1.5rem;
+    }
+
+    .foto-container {
+        width: 100%;
+    }
+
+    /* Ajuste dos colantes em telas pequenas */
+    .colante-rapunzel, .colante-crepusculo, .colante-irmao-urso {
+        width: 80px;
+    }
+}
