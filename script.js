@@ -28,7 +28,7 @@ function showNextFoto() {
     fotos[currentFoto].style.display = 'block';
 }
 
-setInterval(showNextFoto, 3000); // Troca a cada 3 segundos
+setInterval(showNextFoto, 7000); // Troca a cada 3 segundos
 
 // Controles de volume da música
 const volumeControl = document.getElementById('volume');
