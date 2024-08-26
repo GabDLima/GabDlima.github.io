@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João e Leticia</title>
+    <title>Nossa Viagem - João Gabriel e Leticia</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>João Gabriel e Leticia</h1>
-        <p class="lead">Tempo juntos desde 16 de junho de 2022:</p>
-        <div id="contador"></div>
+        <h1>Nossa Viagem</h1>
 
         <!-- Galeria de Fotos Automática -->
         <div class="foto-container">
             <img src="fotos/foto1.jpg" class="foto fade" alt="Foto 1">
-            <img src="foto2.jpg" class="foto fade" alt="Foto 2" style="display: none;">
-            <img src="foto3.jpg" class="foto fade" alt="Foto 3" style="display: none;">
+            <img src="fotos/foto2.jpg" class="foto fade" alt="Foto 2" style="display: none;">
+            <img src="fotos/foto3.jpg" class="foto fade" alt="Foto 3" style="display: none;">
+            <img src="fotos/foto4.jpg" class="foto fade" alt="Foto 4" style="display: none;">
+            <img src="fotos/foto5.jpg" class="foto fade" alt="Foto 5" style="display: none;">
+            <img src="fotos/foto6.jpg" class="foto fade" alt="Foto 6" style="display: none;">
+            <img src="fotos/foto7.jpg" class="foto fade" alt="Foto 7" style="display: none;">
+            <img src="fotos/foto8.jpg" class="foto fade" alt="Foto 8" style="display: none;">
+            <img src="fotos/foto9.jpg" class="foto fade" alt="Foto 9" style="display: none;">
+            <img src="fotos/foto10.jpg" class="foto fade" alt="Foto 10" style="display: none;">
+            <img src="fotos/foto11.jpg" class="foto fade" alt="Foto 11" style="display: none;">
+            <img src="fotos/foto12.jpg" class="foto fade" alt="Foto 12" style="display: none;">
+            <img src="fotos/foto13.jpg" class="foto fade" alt="Foto 13" style="display: none;">
+            <img src="fotos/foto14.jpg" class="foto fade" alt="Foto 14" style="display: none;">
+            <img src="fotos/foto15.jpg" class="foto fade" alt="Foto 15" style="display: none;">
+            <img src="fotos/foto16.jpg" class="foto fade" alt="Foto 16" style="display: none;">
+            <img src="fotos/foto17.jpg" class="foto fade" alt="Foto 17" style="display: none;">
         </div>
+        <!-- Contador no final da página -->
+        <div id="contador"></div>
 
-        <!-- Colantes Temáticos -->
-        <img src="colante-rapunzel.png" class="colante colante-rapunzel" alt="Colante Rapunzel">
-        <img src="colante-crepusculo.png" class="colante colante-crepusculo" alt="Colante Crepúsculo">
-        <img src="colante-irmao-urso.png" class="colante colante-irmao-urso" alt="Colante Irmão Urso">
+        <!-- Música de fundo -->
+        <audio id="background-music" autoplay loop>
+            <source src="mp3/Alceu Valença - La Belle de Jour _ Girassol (Ao Vivo).mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        
+        <!-- Botão para iniciar a música -->
+        <button id="play-music">Clique aqui para ouvir a música</button>
+        <!-- Controles de volume (opcional) -->
+        <div class="volume-control">
+            <label for="volume">Volume da música:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="0.1">
+        </div>
     </div>
 
     <script src="script.js"></script>

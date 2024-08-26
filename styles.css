@@ -1,43 +1,42 @@
-/* Cores mais suaves */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #eae7dc; /* Bege suave */
+    background-color: #eae7dc; /* Fundo bege suave */
     color: #333;
     margin: 0;
     padding: 0;
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-image: url('fundo-montanhas.png'); /* Fundo montanhoso */
     background-size: cover;
-    background-blend-mode: soft-light; /* Suaviza o fundo */
+    background-blend-mode: soft-light;
+    overflow: hidden;
 }
 
 h1 {
-    color: #6a7f8a; /* Azul pastel mais suave */
+    color: #6a7f8a;
     font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-p.lead {
-    color: #5a7052; /* Verde floresta escuro */
-}
-
-#contador {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-/* Galeria de fotos */
+/* Galeria de fotos com formato quadrado, centralizada e tamanho ajustado */
 .foto-container {
-    width: 80%;
-    max-width: 600px;
+    width: 85%; /* Tamanho ligeiramente reduzido */
+    max-width: 700px; /* Ajuste no tamanho máximo */
     position: relative;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .foto {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: absolute;
@@ -49,47 +48,68 @@ p.lead {
     transition: opacity 1.5s ease-in-out;
 }
 
-/* Estilização dos colantes */
+/* Estilização dos adesivos com tamanho maior */
 .colante {
     position: absolute;
     z-index: 1;
-    opacity: 0.8; /* Transparência leve */
+    opacity: 0.8;
 }
 
-.colante-rapunzel {
-    width: 100px;
+.colante-recife {
+    width: 200px; /* Tamanho maior */
     top: 20px;
     left: 20px;
 }
 
-.colante-crepusculo {
-    width: 150px;
+.colante-maragogi {
+    width: 200px; /* Mantido o tamanho atual */
     bottom: 50px;
     right: 20px;
 }
 
-.colante-irmao-urso {
-    width: 120px;
+.colante-porto {
+    width: 200px; /* Tamanho maior */
     top: 100px;
     right: 30px;
 }
 
-/* Responsividade para telas pequenas (celulares) */
+#contador {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Controles de volume (opcional) */
+.volume-control {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#volume {
+    width: 100%;
+    max-width: 300px; /* Largura máxima para controle deslizante */
+}
+
+/* Responsividade para telas pequenas */
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;
+    }
+
+    .foto-container {
+        width: 95%; /* Ajuste menor para telas menores */
     }
 
     #contador {
         font-size: 1.5rem;
     }
 
-    .foto-container {
-        width: 100%;
+    .colante-recife, .colante-maragogi, .colante-porto {
+        width: 150px; /* Ajuste proporcional para telas menores */
     }
 
-    /* Ajuste dos colantes em telas pequenas */
-    .colante-rapunzel, .colante-crepusculo, .colante-irmao-urso {
-        width: 80px;
+    .volume-control {
+        margin-top: 10px;
     }
 }
