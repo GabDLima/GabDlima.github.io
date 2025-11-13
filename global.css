@@ -1,0 +1,733 @@
+/*
+         ==================================================================
+         1. DEFINIÇÃO DAS PALHETAS E TEMAS (Definição de palheta.pdf)
+         ==================================================================
+        */
+:root {
+  /* Palheta 1 - NeoTech Blue (Principal / Light Mode) [cite: 3, 5] */
+  --cor-base-navbar: rgb(0, 43, 91); /* Azul Profundo */
+  --cor-primaria-botoes: rgb(0, 159, 253); /* Azul Elétrico */
+  --cor-destaque-gradiente: rgb(0, 246, 237); /* Ciano Tech */
+  --cor-acento-animacao: rgb(106, 0, 244); /* Roxo Nebuloso */
+  --cor-fundo-claro: rgb(245, 246, 250); /* Cinza Titânio */
+
+  /* Palheta 3 - Elastic Energy (Usada para tags e destaques) [cite: 14, 19] */
+  --cor-alerta-tag: rgb(255, 94, 91); /* Coral Intenso */
+  --cor-data-tag: rgb(255, 210, 63); /* Amarelo Data */
+  --cor-sucesso-tag: rgb(50, 232, 117); /* Verde Byte */
+  --cor-institucional-tag: rgb(60, 145, 230); /* Azul Insight */
+
+  /* Mapeamento Semântico (Light Mode) */
+  --bg-color: var(--cor-fundo-claro);
+  --text-color: #333;
+  --text-color-light: #555;
+  --bg-nav: var(--cor-base-navbar);
+  --text-nav: white;
+  --bg-card: white;
+  --border-color: #eee;
+  --primary-color: var(--cor-primaria-botoes);
+  --primary-text: white;
+  --highlight-color: var(--cor-destaque-gradiente);
+  --accent-color: var(--cor-acento-animacao);
+
+  /* Tipografia (Definição da tipografia.pdf) */
+  --font-titulo: "Roboto", sans-serif; /* [cite: 46] */
+  --font-corpo: "Open Sans", sans-serif; /* [cite: 35] */
+
+  /* Layout (ERS) */
+  --sidebar-width: 240px;
+  --navbar-height: 60px;
+}
+
+/* RF14 - Tema Escuro/Claro [cite: 224] */
+body.dark-mode {
+  /* Palheta 2 - Deep Fusion (Modo Escuro) [cite: 7, 12] */
+  --cor-fundo-escuro: rgb(13, 17, 23); /* Preto Cósmico */
+  --cor-links-escuro: rgb(31, 111, 235); /* Azul Neônico */
+  --cor-icones-escuro: rgb(138, 43, 226); /* Roxo Espacial */
+  --cor-destaque-escuro: rgb(0, 255, 179); /* Verde Futurista */
+  --cor-texto-escuro: rgb(201, 209, 217); /* Cinza Fumaça */
+
+  /* Mapeamento Semântico (Dark Mode) */
+  --bg-color: var(--cor-fundo-escuro);
+  --text-color: var(--cor-texto-escuro);
+  --text-color-light: #aaa;
+  --bg-nav: rgb(19, 23, 30); /* Um pouco mais claro que o fundo */
+  --bg-card: rgb(22, 28, 37);
+  --border-color: #333;
+  --primary-color: var(--cor-links-escuro);
+  --primary-text: white;
+  --highlight-color: var(--cor-destaque-escuro);
+  --accent-color: var(--cor-icones-escuro);
+}
+
+/*
+         ==================================================================
+         2. ESTILOS GERAIS E LAYOUT BASE (RNFs)
+         ==================================================================
+        */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* RF01 - Transição suave entre seções [cite: 144] */
+}
+
+body {
+  font-family: var(--font-corpo);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s; /* RF14 - Transição suave [cite: 226] */
+}
+
+/*
+         ==================================================================
+         3. RF01 - SISTEMA DE NAVEGAÇÃO (Sidebar) [cite: 139]
+         ==================================================================
+        */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--bg-nav);
+  color: var(--text-nav);
+  padding: 20px;
+  z-index: 1000;
+  transition: transform 0.3s ease; /* RF02 - Animação da sidebar [cite: 149] */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  font-family: var(--font-titulo);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  /* Metáfora: "Biblioteca Digital Inteligente"  */
+  line-height: 1.3;
+}
+.sidebar-header .logo {
+  font-size: 1.8rem;
+  color: var(--highlight-color);
+}
+
+.sidebar nav {
+  flex-grow: 1;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav li {
+  margin: 15px 0;
+}
+
+.sidebar nav a {
+  font-family: var(--font-titulo);
+  text-decoration: none;
+  color: var(--text-nav);
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 6px;
+  display: block;
+  transition: background-color 0.2s, color 0.2s;
+  opacity: 0.8;
+}
+
+.sidebar nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+/* RF01 - Indicador visual da seção ativa [cite: 145] */
+.sidebar nav a.active {
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+  font-weight: bold;
+  opacity: 1;
+}
+
+/*
+         ==================================================================
+         4. RF02 - MENU MOBILE RESPONSIVO [cite: 146]
+         ==================================================================
+        */
+.navbar-mobile {
+  display: none; /* Escondido no desktop [cite: 148] */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--bg-nav);
+  color: var(--text-nav);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1001; /* Acima da sidebar escondida */
+}
+
+/* RF01 - Logo na Navbar [cite: 141] */
+.navbar-mobile .logo-mobile {
+  font-family: var(--font-titulo);
+  font-size: 1.3rem;
+  color: white;
+  text-decoration: none;
+}
+.navbar-mobile .logo-mobile .fa-book-open {
+  color: var(--highlight-color);
+}
+
+.hamburger-btn {
+  font-size: 1.5rem;
+  color: var(--text-nav);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width); /* RF01 - Desktop */
+  padding: 40px;
+}
+
+/* RF02 - Media Query < 1024px [cite: 150] */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%); /* Esconde a sidebar [cite: 149] */
+  }
+
+  .sidebar.show {
+    transform: translateX(0); /* Mostra a sidebar */
+  }
+
+  .navbar-mobile {
+    display: flex; /* Mostra a navbar mobile [cite: 148] */
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+    padding-top: calc(
+      var(--navbar-height) + 20px
+    ); /* Espaço para a navbar fixa */
+  }
+}
+
+/*
+         ==================================================================
+         5. RF14 - SELETOR DE TEMA [cite: 224]
+         ==================================================================
+        */
+.theme-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1002;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.theme-switcher:hover {
+  transform: scale(1.1);
+}
+.theme-switcher .fa-sun {
+  display: none;
+}
+
+.dark-mode .theme-switcher .fa-sun {
+  display: block;
+}
+.dark-mode .theme-switcher .fa-moon {
+  display: none;
+}
+
+/* No mobile, o seletor fica na sidebar */
+.sidebar .theme-switcher-mobile {
+  display: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font-corpo);
+}
+.dark-mode .theme-switcher-mobile .fa-sun {
+  display: inline-block;
+}
+.dark-mode .theme-switcher-mobile .fa-moon {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .theme-switcher {
+    display: none;
+  } /* Esconde o botão flutuante */
+  .sidebar .theme-switcher-mobile {
+    display: block;
+  } /* Mostra na sidebar */
+}
+
+/*
+         ==================================================================
+         6. ESTILOS DE COMPONENTES GERAIS (Cards, Botões, Títulos)
+         ==================================================================
+        */
+section {
+  padding-top: 60px; /* Ancoragem */
+  margin-bottom: 60px;
+  min-height: 80vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titulo);
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+h2 {
+  font-size: 2.2rem;
+}
+h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-color-light);
+  margin-bottom: 15px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-5px); /* RF11 - Feedback visual [cite: 208] */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.info-box {
+  background-color: var(--bg-card);
+  border-left: 5px solid var(--primary-color);
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: var(--font-titulo);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+}
+
+/*
+         ==================================================================
+         7. CONTEÚDO DAS SEÇÕES (RF03 - RF07)
+         ==================================================================
+        */
+
+/* RF03 - Seção Início (Home) [cite: 153] */
+#inicio h1 {
+  /* RF03 - Título principal com gradiente animado [cite: 155] */
+  font-size: 3.5rem;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--accent-color),
+    var(--highlight-color)
+  );
+  background-size: 200% 200%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gradient-flow 5s ease infinite;
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#inicio .subtitle {
+  font-size: 1.3rem; /* RF03 - Subtítulo explicativo [cite: 156] */
+  color: var(--text-color-light);
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+#inicio .badges-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+/* RF03 - 3 badges informativos [cite: 157] */
+#inicio .badge-info {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--primary-color);
+}
+
+#inicio .card h3 {
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+#inicio .card .fa {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+/* RF04 - Seção Como Funciona [cite: 160] */
+/* RF04 - Cada bloco com ícone identificador colorido [cite: 163] */
+#como-funciona .card .fa {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+#como-funciona .card .fa-database {
+  color: var(--cor-institucional-tag);
+}
+#como-funciona .card .fa-file-code {
+  color: var(--cor-data-tag);
+}
+#como-funciona .card .fa-network-wired {
+  color: var(--cor-sucesso-tag);
+}
+
+/* RF04 - Box informativo sobre Apache Lucene [cite: 164] */
+.lucene-box {
+  background-color: var(--bg-card);
+  border-left: 5px solid var(--cor-data-tag);
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 30px;
+}
+.lucene-box h3 {
+  color: var(--cor-data-tag);
+  margin-bottom: 10px;
+}
+
+/* RF05 - Seção Casos de Uso [cite: 166] */
+/* RF05 - Cada card com... gradiente único [cite: 169] */
+#casos-de-uso .card {
+  border: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+#casos-de-uso .card .fa {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+#casos-de-uso .card h3 {
+  color: white;
+}
+#casos-de-uso .card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#casos-de-uso .card-1 {
+  background: linear-gradient(135deg, #009ffd, #2a2a72);
+} /* Azul Elétrico */
+#casos-de-uso .card-2 {
+  background: linear-gradient(135deg, #f12711, #f5af19);
+} /* Coral + Amarelo */
+#casos-de-uso .card-3 {
+  background: linear-gradient(135deg, #4776e6, #8e54e9);
+} /* Roxo */
+#casos-de-uso .card-4 {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+} /* Verde */
+
+/* RF05 - Efeito hover com escala e 'Saiba mais' [cite: 170] */
+#casos-de-uso .card .saiba-mais {
+  position: absolute;
+  bottom: -50px;
+  left: 25px;
+  font-family: var(--font-titulo);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+#casos-de-uso .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+#casos-de-uso .card:hover .saiba-mais {
+  bottom: 25px;
+  opacity: 1;
+}
+
+/* RF06 - Seção ELK Stack [cite: 173] */
+#elk-stack .card {
+  text-align: center;
+}
+/* RF06 - Cada componente com cor... única [cite: 174] */
+#elk-stack .card-elastic {
+  border-top: 5px solid var(--cor-institucional-tag);
+}
+#elk-stack .card-logstash {
+  border-top: 5px solid var(--cor-alerta-tag);
+}
+#elk-stack .card-kibana {
+  border-top: 5px solid var(--cor-sucesso-tag);
+}
+#elk-stack .card-beats {
+  border-top: 5px solid var(--cor-data-tag);
+}
+
+#elk-stack .card .fa {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+#elk-stack .card-elastic .fa {
+  color: var(--cor-institucional-tag);
+}
+#elk-stack .card-logstash .fa {
+  color: var(--cor-alerta-tag);
+}
+#elk-stack .card-kibana .fa {
+  color: var(--cor-sucesso-tag);
+}
+#elk-stack .card-beats .fa {
+  color: var(--cor-data-tag);
+}
+
+/* RF06 - Diagrama de fluxo de dados [cite: 175] */
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+  font-family: var(--font-titulo);
+  text-align: center;
+}
+.flow-diagram .fa-arrow-right {
+  font-size: 2rem;
+  color: var(--text-color-light);
+}
+.flow-diagram .flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flow-diagram .flow-item .fa {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+/* RF06 - Labels de etapa [cite: 177] */
+.flow-diagram .flow-item span {
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+  margin-top: 5px;
+}
+@media (max-width: 768px) {
+  .flow-diagram {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .flow-diagram .fa-arrow-right {
+    transform: rotate(90deg);
+  }
+}
+
+/* RF07 - Demo Interativa de Busca  */
+.demo-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.search-bar-wrapper {
+  position: relative;
+}
+/* RF07 - Campo de busca com ícone [cite: 180] */
+.demo-search-bar {
+  width: 100%;
+  padding: 18px 20px 18px 55px; /* Espaço para o ícone */
+  font-size: 1.2rem;
+  font-family: var(--font-corpo); /* [cite: 36] */
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  background-color: var(--bg-card);
+  color: var(--text-color);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.demo-search-bar:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(0, 159, 253, 0.2); /* RF11 - Efeito de foco [cite: 209] */
+}
+.search-bar-wrapper .fa-search {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+}
+
+.search-stats {
+  font-family: var(--font-corpo);
+  color: var(--text-color-light);
+  margin: 15px 5px;
+  font-size: 0.9rem;
+  min-height: 20px; /* Evita pulo de layout */
+}
+/* RF07 - Exibição do tempo de busca simulado [cite: 182] */
+#search-time {
+  font-weight: bold;
+  color: var(--cor-sucesso-tag);
+}
+/* RF07 - Contador de resultados [cite: 183] */
+#search-count {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* RF07 - Dicas de busca [cite: 187] */
+.search-tips {
+  text-align: center;
+  margin-top: 20px;
+}
+.search-tips p {
+  margin-bottom: 10px;
+}
+.tip-tag {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-color-light);
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+  margin: 5px;
+  font-family: var(--font-corpo);
+  font-size: 0.9rem;
+}
+.tip-tag:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* RF07 - Cards de resultado [cite: 184] */
+.demo-results-list .card {
+  margin-bottom: 15px;
+  border-left: 5px solid;
+  transition: background-color 0.2s; /* RF11 [cite: 208] */
+}
+.demo-results-list .card:hover {
+  /* RF07 - Hover effect [cite: 184] */
+  background-color: var(--bg-color);
+}
+
+.demo-results-list .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.demo-results-list .card-header h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* RF07 - Tags de categoria coloridas [cite: 185] */
+.demo-results-list .tag {
+  font-family: var(--font-titulo);
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+}
+
+.tag-logs {
+  background-color: var(--cor-data-tag);
+  color: #333;
+}
+.tag-produtos {
+  background-color: var(--cor-institucional-tag);
+}
+.tag-seguranca {
+  background-color: var(--cor-alerta-tag);
+}
+.tag-documentos {
+  background-color: var(--cor-sucesso-tag);
+  color: #333;
+}
+
+/* Mapeando as tags para as cores da borda */
+.card-logs {
+  border-color: var(--cor-data-tag);
+}
+.card-produtos {
+  border-color: var(--cor-institucional-tag);
+}
+.card-seguranca {
+  border-color: var(--cor-alerta-tag);
+}
+.card-documentos {
+  border-color: var(--cor-sucesso-tag);
+}
+
+.demo-results-list .card-content p {
+  font-size: 0.95rem; /* RF07 [cite: 37] */
+}
+
+/* RF07 - Mensagem quando não há resultados [cite: 186] */
+#no-results-message {
+  display: none;
+  text-align: center;
+  padding: 30px;
+}
+#no-results-message .fa {
+  font-size: 3rem;
+  color: var(--text-color-light);
+  margin-bottom: 15px;
+}
